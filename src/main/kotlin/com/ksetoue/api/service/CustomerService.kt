@@ -10,7 +10,7 @@ class CustomerService(
     private val customerRepository: CustomerRepository
 ) {
     fun create(customerData: CustomerDto) {
-        val newCustomer = Customer(null, customerData.name)
+        val newCustomer = Customer(null, customerData.name, customerData.email)
         customerRepository.save(newCustomer)
     }
 }
