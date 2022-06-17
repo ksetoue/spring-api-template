@@ -2,15 +2,10 @@ package com.ksetoue.api.port.controller
 
 import com.ksetoue.api.domain.Customer
 import com.ksetoue.api.domain.CustomerDto
-import com.ksetoue.api.service.CustomerService
+import com.ksetoue.api.application.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/user")
@@ -24,7 +19,7 @@ class CustomerController(
     }
 
     @GetMapping("/{id}")
-    fun findById(@PathVariable id: Long): ResponseEntity<Customer?> {
-        return ResponseEntity(customerService.findById(id), HttpStatus.OK)
+    fun findById(@PathVariable id: Long): Customer? {
+        return customerService.findById(id)
     }
 }
