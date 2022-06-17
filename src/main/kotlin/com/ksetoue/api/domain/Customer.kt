@@ -15,5 +15,7 @@ data class Customer (
     val name: String? = null,
     val email: String? = null,
     val createdAt: OffsetDateTime = OffsetDateTime.now(),
-    val company: String? = null
+    val company: String? = null,
+    val password: String? = null,
+    val userName: String? = null
 )
