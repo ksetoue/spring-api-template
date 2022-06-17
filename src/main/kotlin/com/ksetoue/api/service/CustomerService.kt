@@ -3,6 +3,7 @@ package com.ksetoue.api.service
 import com.ksetoue.api.domain.Customer
 import com.ksetoue.api.domain.CustomerDto
 import com.ksetoue.api.domain.CustomerRepository
+import com.ksetoue.api.domain.common.ResourceNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,5 +13,10 @@ class CustomerService(
     fun create(customerData: CustomerDto) {
         val newCustomer = Customer(null, customerData.name, customerData.email)
         customerRepository.save(newCustomer)
+    }
+
+    fun findById(id: Long): Customer? {
+        return customerRepository.findById(id)
+            .orElseThrow { throw ResourceNotFoundException("customer not found") }
     }
 }
