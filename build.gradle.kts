@@ -32,8 +32,13 @@ dependencies {
     implementation("org.postgresql:postgresql:42.3.4")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+    implementation("org.springframework.boot:spring-boot-starter-security:2.7.0")
+    implementation("io.jsonwebtoken:jjwt-root:0.11.5")
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    implementation("org.springframework.security:spring-security-test:5.7.1")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-test:2.7.0")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 
