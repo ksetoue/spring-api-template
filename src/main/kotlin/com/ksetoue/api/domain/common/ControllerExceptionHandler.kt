@@ -33,11 +33,12 @@ class ControllerExceptionHandler {
                 OffsetDateTime.now(),
                 "${exception.message} not found",
                 request.getDescription(false),
-                "resource-not-found"),
+                "resource-not-found"
+            ),
             HttpStatus.NOT_FOUND
         )
     }
-    
+
     @ExceptionHandler(Exception::class)
     fun globalExceptionHandling(exception: Exception, request: WebRequest): ResponseEntity<*>? {
         return ResponseEntity<Any>(
@@ -45,11 +46,12 @@ class ControllerExceptionHandler {
                 OffsetDateTime.now(),
                 "could not process request for ${exception.message}",
                 request.getDescription(false),
-                "unknown-exception"),
+                "unknown-exception"
+            ),
             HttpStatus.INTERNAL_SERVER_ERROR
         )
     }
-    
+
     @ExceptionHandler(InvalidData::class)
     fun invalidDataExceptionHandling(exception: Exception, request: WebRequest): ResponseEntity<*>? {
         return ResponseEntity<Any>(
@@ -62,9 +64,9 @@ class ControllerExceptionHandler {
             HttpStatus.BAD_REQUEST
         )
     }
-    
+
     @ExceptionHandler(AuthDataNotFound::class)
-    fun authDataExceptionHandling(exception: Exception, request: WebRequest):  ResponseEntity<*>?  {
+    fun authDataExceptionHandling(exception: Exception, request: WebRequest): ResponseEntity<*>? {
         return ResponseEntity<Any>(
             ErrorDetails(
                 OffsetDateTime.now(),
@@ -75,9 +77,9 @@ class ControllerExceptionHandler {
             HttpStatus.FORBIDDEN
         )
     }
-    
+
     @ExceptionHandler(DuplicatedData::class)
-    fun duplicatedDataExceptionHandler(exception: Exception, request: WebRequest):  ResponseEntity<*>?  {
+    fun duplicatedDataExceptionHandler(exception: Exception, request: WebRequest): ResponseEntity<*>? {
         return ResponseEntity<Any>(
             ErrorDetails(
                 OffsetDateTime.now(),

@@ -22,13 +22,13 @@ data class Customer(
     fun comparePassword(password: String): Boolean {
         return BCryptPasswordEncoder().matches(password, this.password)
     }
-    
+
     fun toCleanUser(): GetCustomerDto = GetCustomerDto(
         this.name,
         this.email,
         this.userName
     )
-    
+
     companion object {
         fun from(customerDto: CustomerDto): Customer {
             val passwordEncoder = BCryptPasswordEncoder()
