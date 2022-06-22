@@ -1,4 +1,4 @@
-package com.ksetoue.api.domain
+package com.ksetoue.api.domain.customer
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import java.time.OffsetDateTime

@@ -1,4 +1,4 @@
-package com.ksetoue.api.domain
+package com.ksetoue.api.domain.auth
 
 data class LoginDto(
     val email: String,

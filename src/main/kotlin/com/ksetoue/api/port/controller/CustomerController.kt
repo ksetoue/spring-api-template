@@ -1,10 +1,9 @@
 package com.ksetoue.api.port.controller
 
-import com.ksetoue.api.domain.Customer
-import com.ksetoue.api.domain.CustomerDto
+import com.ksetoue.api.domain.customer.CustomerDto
 import com.ksetoue.api.application.service.CustomerService
-import com.ksetoue.api.domain.GetCustomerDto
-import com.ksetoue.api.domain.LoginDto
+import com.ksetoue.api.domain.customer.GetCustomerDto
+import com.ksetoue.api.domain.auth.LoginDto
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.http.HttpStatus
@@ -32,41 +31,20 @@ class CustomerController(
     
     @GetMapping
     fun user(@CookieValue("jwt") jwt: String?): ResponseEntity<Any> {
-        try {
-            if (jwt == null) {
-                return ResponseEntity.status(401).body("unauthenticated")
-            }
-        
-            val body = Jwts.parser().setSigningKey("secret").parseClaimsJws(jwt).body
-        
-            return ResponseEntity.ok(customerService.findById(body.issuer.toLong())!!.toCleanUser())
+        return try {
+            val user = customerService.authenticate(jwt)
+            ResponseEntity(user, HttpStatus.OK)
         } catch (e: Exception) {
-            return ResponseEntity.status(401).body("unauthenticated")
+            ResponseEntity(HttpStatus.FORBIDDEN)
         }
     }
     
     @PostMapping("/login")
     fun login(@RequestBody body: LoginDto, response: HttpServletResponse): ResponseEntity<out Any> {
-        val user = this.customerService.findByEmail(body.email)
-            ?: return ResponseEntity.badRequest().body("user not found!")
-    
-        if (!user.comparePassword(body.password)) {
-            return ResponseEntity.badRequest().body("invalid password!")
-        }
-    
-        val issuer = user.id.toString()
-    
-        val jwt = Jwts.builder()
-            .setIssuer(issuer)
-            .setExpiration(Date(System.currentTimeMillis() + 60 * 24 * 1000)) // 1 day
-            .signWith(SignatureAlgorithm.HS512, "secret").compact()
-    
-        val cookie = Cookie("jwt", jwt)
-        cookie.isHttpOnly = true
-    
+        val (user, cookie) = customerService.login(body)
         response.addCookie(cookie)
-    
-        return ResponseEntity(user.toCleanUser(), HttpStatus.OK)
+        
+        return ResponseEntity(user.toCleanUser(),HttpStatus.OK)
     }
     
     @PostMapping("logout")

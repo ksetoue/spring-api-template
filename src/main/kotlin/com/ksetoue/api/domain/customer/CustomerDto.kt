@@ -1,4 +1,4 @@
-package com.ksetoue.api.domain
+package com.ksetoue.api.domain.customer
 
 data class CustomerDto(
     val name: String,
