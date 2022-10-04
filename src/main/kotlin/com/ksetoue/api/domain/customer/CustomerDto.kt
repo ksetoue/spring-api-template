@@ -1,9 +1,16 @@
 package com.ksetoue.api.domain.customer
 
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
+
 data class CustomerDto(
+    @NotBlank
     val name: String,
+    @NotBlank
     val email: String,
+    @NotBlank
     val password: String,
+    @NotBlank
     val userName: String,
 )
 

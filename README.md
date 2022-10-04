@@ -48,9 +48,9 @@ git clone https://github.com/ksetoue/spring-api-template.git
 ### 
 
 ### Accessing 
-- Home endpoint will be available on http://localhost:8083/
+- Home endpoint will be available on http://localhost:8084/
 
-- To access swagger go to http://localhost:8083/swagger-ui/index.html#/
+- To access swagger go to http://localhost:8084/api-docs/swagger-ui/index.html#/
 
 --------------------
 ## Contributors ✨
