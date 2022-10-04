@@ -1,6 +1,7 @@
 package com.ksetoue.api.domain.common
 
 import org.springframework.dao.DuplicateKeyException
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -8,10 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.context.request.WebRequest
 import java.security.InvalidKeyException
 import java.time.OffsetDateTime
-import javax.persistence.EntityNotFoundException
 import javax.security.auth.message.AuthException
 
-class DataNotFound(message: String?) : EntityNotFoundException(message)
+class DataNotFound(message: String?) : NotFoundException()
 class InvalidData(message: String?) : InvalidKeyException(message)
 
 class AuthDataNotFound(message: String?) : AuthException(message)

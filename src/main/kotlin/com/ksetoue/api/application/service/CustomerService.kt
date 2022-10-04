@@ -76,4 +76,8 @@ class CustomerService(
 
         return Pair(user, cookie)
     }
+
+    fun findAll(): MutableIterable<Customer> {
+        return customerRepository.findAll()
+    }
 }

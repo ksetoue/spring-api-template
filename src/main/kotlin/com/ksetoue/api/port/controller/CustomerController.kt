@@ -2,6 +2,7 @@ package com.ksetoue.api.port.controller
 
 import com.ksetoue.api.application.service.CustomerService
 import com.ksetoue.api.domain.auth.LoginDto
+import com.ksetoue.api.domain.customer.Customer
 import com.ksetoue.api.domain.customer.CustomerDto
 import com.ksetoue.api.domain.customer.GetCustomerDto
 import org.springframework.http.HttpStatus
@@ -21,6 +22,11 @@ import javax.servlet.http.HttpServletResponse
 class CustomerController(
     private val customerService: CustomerService
 ) {
+    @GetMapping("/all")
+    fun findAll(): MutableIterable<Customer> {
+        return customerService.findAll()
+    }
+
     @PostMapping("/register")
     fun create(@RequestBody customerData: CustomerDto): ResponseEntity<String> {
         customerService.create(customerData)
