@@ -2,9 +2,17 @@ package com.ksetoue.api.port.controller
 
 import com.ksetoue.api.application.service.CustomerService
 import com.ksetoue.api.domain.auth.LoginDto
+import com.ksetoue.api.domain.common.ControllerExceptionHandler
+import com.ksetoue.api.domain.common.DataNotFound
+import com.ksetoue.api.domain.common.InvalidData
 import com.ksetoue.api.domain.customer.Customer
 import com.ksetoue.api.domain.customer.CustomerDto
 import com.ksetoue.api.domain.customer.GetCustomerDto
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.Content
+import io.swagger.v3.oas.annotations.media.Schema
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CookieValue
@@ -22,6 +30,8 @@ import javax.servlet.http.HttpServletResponse
 class CustomerController(
     private val customerService: CustomerService
 ) {
+    @Operation(summary = "Get a list with all users")
+    @ApiResponse(description = "no customers registered", responseCode = "200")
     @GetMapping("/all")
     fun findAll(): MutableIterable<Customer> {
         return customerService.findAll()
@@ -32,6 +42,10 @@ class CustomerController(
         customerService.create(customerData)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
+
+    @Operation(summary = "Get a customer by its id")
+    @ApiResponse(description = "customer not found", responseCode = "404")
+    @ApiResponse(description = "invalid parameters", responseCode = "400")
 
     @GetMapping("/{id}")
     fun findById(@PathVariable id: Long): GetCustomerDto? {

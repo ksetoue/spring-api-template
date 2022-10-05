@@ -23,15 +23,15 @@ class SwaggerConfig {
     fun springShopOpenAPI(): OpenAPI? {
         return OpenAPI()
             .info(
-                Info().title("SpringShop API")
-                    .description("Spring shop sample application")
+                Info().title("Spring Sample API")
+                    .description("Spring sample API application")
                     .version("v0.0.1")
                     .license(License().name("Apache 2.0").url("http://springdoc.org"))
             )
             .externalDocs(
                 ExternalDocumentation()
-                    .description("SpringShop Wiki Documentation")
-                    .url("https://springshop.wiki.github.org/docs")
+                    .description("This is the documentation of the sample api")
+                    .url("http://spring/docs")
             )
     }
 }
