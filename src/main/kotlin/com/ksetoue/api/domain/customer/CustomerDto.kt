@@ -1,7 +1,6 @@
 package com.ksetoue.api.domain.customer
 
 import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotNull
 
 data class CustomerDto(
     @NotBlank
