@@ -5,6 +5,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+[![Backend CI](https://github.com/ksetoue/spring-api-template/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ksetoue/spring-api-template/actions/workflows/build.yml)
 
 ## About
 This is a template project for those who intent to start developing an API using Kotlin, Spring Boot and some initial configurations such as lint rules, logging with opentelemetry and swagger for API documentation.
